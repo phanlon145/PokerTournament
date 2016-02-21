@@ -8,9 +8,20 @@ namespace PokerTournament
 {
     class Person : IComparable
     {
+        // fields
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int ssn { get; set; }
+        public Winnings Winnings { get; set; }
+
+        // constructor
+        public Person(string firstName, string lastName, int ssn)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            this.ssn = ssn;
+            this.Winnings = new Winnings();
+        }
 
         public int CompareTo(object obj)
         {
