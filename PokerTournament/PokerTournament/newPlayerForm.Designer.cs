@@ -43,7 +43,7 @@
             // 
             this.firstNameBox.Location = new System.Drawing.Point(144, 84);
             this.firstNameBox.Name = "firstNameBox";
-            this.firstNameBox.Size = new System.Drawing.Size(149, 29);
+            this.firstNameBox.Size = new System.Drawing.Size(149, 22);
             this.firstNameBox.TabIndex = 0;
             // 
             // firstNameLbl
@@ -52,7 +52,7 @@
             this.firstNameLbl.ForeColor = System.Drawing.Color.MistyRose;
             this.firstNameLbl.Location = new System.Drawing.Point(12, 87);
             this.firstNameLbl.Name = "firstNameLbl";
-            this.firstNameLbl.Size = new System.Drawing.Size(86, 21);
+            this.firstNameLbl.Size = new System.Drawing.Size(61, 13);
             this.firstNameLbl.TabIndex = 1;
             this.firstNameLbl.Text = "First Name";
             // 
@@ -63,7 +63,7 @@
             this.titleLbl.ForeColor = System.Drawing.Color.MistyRose;
             this.titleLbl.Location = new System.Drawing.Point(38, 9);
             this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(235, 38);
+            this.titleLbl.Size = new System.Drawing.Size(160, 25);
             this.titleLbl.TabIndex = 2;
             this.titleLbl.Text = "New Player Entry";
             // 
@@ -73,7 +73,7 @@
             this.lastNameLbl.ForeColor = System.Drawing.Color.MistyRose;
             this.lastNameLbl.Location = new System.Drawing.Point(12, 148);
             this.lastNameLbl.Name = "lastNameLbl";
-            this.lastNameLbl.Size = new System.Drawing.Size(84, 21);
+            this.lastNameLbl.Size = new System.Drawing.Size(59, 13);
             this.lastNameLbl.TabIndex = 3;
             this.lastNameLbl.Text = "Last Name";
             // 
@@ -81,7 +81,7 @@
             // 
             this.lastNameBox.Location = new System.Drawing.Point(144, 148);
             this.lastNameBox.Name = "lastNameBox";
-            this.lastNameBox.Size = new System.Drawing.Size(149, 29);
+            this.lastNameBox.Size = new System.Drawing.Size(149, 22);
             this.lastNameBox.TabIndex = 4;
             // 
             // ssnLbl
@@ -90,7 +90,7 @@
             this.ssnLbl.ForeColor = System.Drawing.Color.MistyRose;
             this.ssnLbl.Location = new System.Drawing.Point(16, 217);
             this.ssnLbl.Name = "ssnLbl";
-            this.ssnLbl.Size = new System.Drawing.Size(53, 21);
+            this.ssnLbl.Size = new System.Drawing.Size(37, 13);
             this.ssnLbl.TabIndex = 5;
             this.ssnLbl.Text = "SSN #";
             // 
@@ -119,14 +119,13 @@
             // ssnBox
             // 
             this.ssnBox.Location = new System.Drawing.Point(144, 217);
-            this.ssnBox.Mask = "000-00-0000";
             this.ssnBox.Name = "ssnBox";
-            this.ssnBox.Size = new System.Drawing.Size(149, 29);
+            this.ssnBox.Size = new System.Drawing.Size(149, 22);
             this.ssnBox.TabIndex = 9;
             // 
             // newPlayerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGreen;
             this.ClientSize = new System.Drawing.Size(310, 339);

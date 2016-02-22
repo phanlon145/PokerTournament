@@ -8,6 +8,7 @@ namespace PokerTournament
 {
     // Week class keeps a single week's location and winnings tied
     // together within the array of a Winnings object
+    [Serializable]
     class Week
     {
         // fields

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerTournament
 {
+    [Serializable]
     class Person : IComparable
     {
         // fields

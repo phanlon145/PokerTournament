@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace PokerTournament
 {
@@ -18,7 +19,7 @@ namespace PokerTournament
             InitializeComponent();
         }
 
-        string path = @"C:\Poker Tournament\Players.txt";
+        string path = @"Players.txt";
 
         //cancel button closes form
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -29,28 +30,65 @@ namespace PokerTournament
         //Save+close button
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            List<Person> players = new List<Person>();
+
+            players = GetPlayers();
+
             //create a new person object
-            Person newPerson = new Person(firstNameBox.Text, lastNameBox.Text, Convert.ToInt16(ssnBox.Text));
+            Person newPerson = new Person(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
 
-            //if a players file doesn't exist, create one and write player to it
-            if (!File.Exists(path))
+            for (int q = 0; q < players.Count; ++q)
             {
-                using (StreamWriter sw = File.CreateText(path))
+                if (players[q].Equals(newPerson))
                 {
-                    sw.WriteLine(newPerson.ToString());
+                    MessageBox.Show("That employee already exists\nThe existing employee has been updated", "Duplicate employee message");
+                    players.Remove(players[q]);
                 }
             }
-            //if the file exists, add the player on a new line
-            else {               
-                using (StreamWriter sw = File.AppendText(path))
-                {
-                    sw.WriteLine(newPerson.ToString());
-                }
+            players.Add(newPerson);
 
-                //Confirm that the data was saved, and close the window
-                MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
-                Form.ActiveForm.Close();
+            SavePlayers(players);
+
+            //Confirm that the data was saved, and close the window
+            MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
+            Form.ActiveForm.Close();
+
+        }
+
+        List<Person> GetPlayers()
+        {
+            // This method gets all of the saved players or creates a file to store them if it does not exiat
+            FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
+            List<Person> players = new List<Person>();
+            BinaryFormatter bformatter = new BinaryFormatter();
+            while (infile.Position < infile.Length)
+            {
+                Person newPerson = new Person(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
+                newPerson = (Person)bformatter.Deserialize(infile);
+                players.Add(newPerson);
             }
+
+            infile.Close();
+
+            return players;
+        }
+
+        void SavePlayers(List<Person> players)
+        {
+            FileStream outfile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
+
+            // The file is deleted with this next statement
+            outfile.SetLength(0);
+
+            BinaryFormatter bformatter = new BinaryFormatter();
+
+            // The updated list of employees is written to the file
+            foreach (Person x in players)
+            {
+                bformatter.Serialize(outfile, x);
+            }
+
+            outfile.Close();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace PokerTournament
 {
     // Winnings class contains array of Week objects and
     // sum of winnings for a single person
+    [Serializable]
     class Winnings : PokerFace
     {
         // fields
