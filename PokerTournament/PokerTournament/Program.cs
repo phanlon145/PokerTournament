@@ -16,7 +16,7 @@ namespace PokerTournament
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new newPlayerForm());
+            Application.Run(new MainForm());
         }
     }
 }

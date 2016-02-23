@@ -12,24 +12,28 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace PokerTournament
 {
-    public partial class newPlayerForm : Form
+    public partial class MainForm : Form
     {
-        public newPlayerForm()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         string path = @"Players.txt";
 
-        //cancel button closes form
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void newPlayerForm_Load(object sender, EventArgs e)
         {
-            Form.ActiveForm.Close();
+
         }
 
-        //Save+close button
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void tabPage1_Click(object sender, EventArgs e)
         {
+
+        }
+        //Save+close button
+        private void saveBtn_Click_1(object sender, EventArgs e)
+        {
+
             List<Person> players = new List<Person>();
 
             players = GetPlayers();
@@ -89,6 +93,21 @@ namespace PokerTournament
             }
 
             outfile.Close();
+        }
+        //cancel button closes form
+        private void cancelBtn_Click_1(object sender, EventArgs e)
+        {
+            Form.ActiveForm.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
