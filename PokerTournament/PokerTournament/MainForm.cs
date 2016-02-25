@@ -66,8 +66,9 @@ namespace PokerTournament
             List<Person> players = new List<Person>();
             BinaryFormatter bformatter = new BinaryFormatter();
             while (infile.Position < infile.Length)
-            {               
-                Person newPerson = (Person)bformatter.Deserialize(infile);
+            {
+                Person newPerson = new Person(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
+                newPerson = (Person)bformatter.Deserialize(infile);
                 players.Add(newPerson);
             }
 
@@ -107,34 +108,6 @@ namespace PokerTournament
         private void button1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            List<Person> searchPlayers = new List<Person>();
-
-            searchPlayers = GetPlayers();
-
-            for(int x = 0; x < searchPlayers.Count; ++x)
-            {
-                if(Convert.ToInt32(ssnSearchForTextBox.Text) == searchPlayers[x].ssn)
-                {
-                    txtWeek1.Text = searchPlayers[x].Winnings.Weeks[0].Winning.ToString();
-                    txtWeek2.Text = searchPlayers[x].Winnings.Weeks[1].Winning.ToString();
-                    txtWeek3.Text = searchPlayers[x].Winnings.Weeks[2].Winning.ToString();
-                    txtWeek4.Text = searchPlayers[x].Winnings.Weeks[3].Winning.ToString();
-                    txtWeek5.Text = searchPlayers[x].Winnings.Weeks[4].Winning.ToString();
-                    txtWeek6.Text = searchPlayers[x].Winnings.Weeks[5].Winning.ToString();
-                    txtWeek7.Text = searchPlayers[x].Winnings.Weeks[6].Winning.ToString();
-                    txtWeek8.Text = searchPlayers[x].Winnings.Weeks[7].Winning.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("No players with the SSN exist", "Player not found");
-                }
-
-                ssnSearchForTextBox.Clear();
-            }
         }
     }
 }

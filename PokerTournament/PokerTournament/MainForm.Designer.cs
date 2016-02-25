@@ -53,7 +53,7 @@
             this.comboState = new System.Windows.Forms.ComboBox();
             this.comboBoxCasino = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ssnSearchForTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ssnBox = new System.Windows.Forms.MaskedTextBox();
             this.saveBtn = new System.Windows.Forms.Button();
@@ -103,7 +103,7 @@
             this.tabPage2.Controls.Add(this.comboState);
             this.tabPage2.Controls.Add(this.comboBoxCasino);
             this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.ssnSearchForTextBox);
+            this.tabPage2.Controls.Add(this.maskedTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -216,7 +216,6 @@
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtWeek8
             // 
@@ -322,14 +321,13 @@
             this.label1.Text = "Search for Player";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // ssnSearchForTextBox
+            // maskedTextBox1
             // 
-            this.ssnSearchForTextBox.Location = new System.Drawing.Point(24, 28);
-            this.ssnSearchForTextBox.Mask = "000-00-0000";
-            this.ssnSearchForTextBox.Name = "ssnSearchForTextBox";
-            this.ssnSearchForTextBox.Size = new System.Drawing.Size(100, 22);
-            this.ssnSearchForTextBox.TabIndex = 0;
-            this.ssnSearchForTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox1.Location = new System.Drawing.Point(24, 28);
+            this.maskedTextBox1.Mask = "000-00-0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 22);
+            this.maskedTextBox1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -540,7 +538,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox ssnSearchForTextBox;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtWeek1;
         private System.Windows.Forms.ComboBox comboState;

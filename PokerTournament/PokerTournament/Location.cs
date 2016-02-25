@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace PokerTournament
 {
-    [Serializable]
     class Location
     {
         public string Name { get; set; }
         public string State { get; set; }
-
-        public Location()
-        {
-            Name = "Not entered";
-            State = "??";
-        }
 
         // constructor requires both fields to be set
         // instantiates from Winnings class when

@@ -34,8 +34,6 @@ namespace PokerTournament
         public Winnings()
         {
             this.Weeks = new Week[8];
-            for (int x = 0; x < Weeks.Length; ++x)
-                Weeks[x] = new Week();
         }
 
         // method calculates total winnings for derived field
