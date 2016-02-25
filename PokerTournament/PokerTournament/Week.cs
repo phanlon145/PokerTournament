@@ -15,6 +15,12 @@ namespace PokerTournament
         public Location Location { get; set; }
         public double Winning { get; set; }
 
+        public Week()
+        {
+            Location = new Location();
+            Winning = 0;
+        }
+
         // constructor requires both fields to be set
         public Week(Location location, double winningAmount)
         {
