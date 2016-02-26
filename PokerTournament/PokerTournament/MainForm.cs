@@ -14,6 +14,8 @@ namespace PokerTournament
 {
     public partial class MainForm : Form
     {
+        int selectedPlayer = 0; // This is used by the winnings tab search button to identify which index matches the search
+
         public MainForm()
         {
             InitializeComponent();
@@ -130,6 +132,7 @@ namespace PokerTournament
                     txtWeek6.Text = searchPlayers[x].Winnings.Weeks[5].Winning.ToString();
                     txtWeek7.Text = searchPlayers[x].Winnings.Weeks[6].Winning.ToString();
                     txtWeek8.Text = searchPlayers[x].Winnings.Weeks[7].Winning.ToString();
+                    selectedPlayer = x;
                     x = searchPlayers.Count;
                     found = true;
                 }
@@ -140,6 +143,24 @@ namespace PokerTournament
             }
 
             ssnSearchForTextBox.Clear();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            List<Person> updatePlayers = new List<Person>();
+
+            updatePlayers = GetPlayers();
+
+            updatePlayers[selectedPlayer].Winnings.Weeks[0].Winning = Convert.ToInt32(txtWeek1.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[1].Winning = Convert.ToInt32(txtWeek2.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[2].Winning = Convert.ToInt32(txtWeek3.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[3].Winning = Convert.ToInt32(txtWeek4.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[4].Winning = Convert.ToInt32(txtWeek5.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[5].Winning = Convert.ToInt32(txtWeek6.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[6].Winning = Convert.ToInt32(txtWeek7.Text);
+            updatePlayers[selectedPlayer].Winnings.Weeks[7].Winning = Convert.ToInt32(txtWeek8.Text);
+
+            SavePlayers(updatePlayers);
         }
     }
 }
