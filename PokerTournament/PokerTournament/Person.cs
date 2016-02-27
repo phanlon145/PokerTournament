@@ -45,20 +45,27 @@ namespace PokerTournament
 
         public override bool Equals(object obj)
         {
-            Person temp = (Person)obj;
-            if (this.ssn == temp.ssn)
-            {
-                return true;
-            }
-            else
+            if (obj == DBNull.Value)
             {
                 return false;
+            }
+            else {
+                Person temp = (Person)obj;
+                if (this.ssn == temp.ssn)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2}", FirstName, LastName, ssn);
+            return string.Format("{0} {1} {2} {3}", FirstName, LastName, ssn, Winnings.CalculateTotalWinnings());
+
         }
     }
 }

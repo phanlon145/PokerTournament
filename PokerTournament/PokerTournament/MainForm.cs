@@ -57,7 +57,6 @@ namespace PokerTournament
 
             //Confirm that the data was saved, and close the window
             MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
-            Form.ActiveForm.Close();
 
         }
 
@@ -162,6 +161,17 @@ namespace PokerTournament
             updatePlayers[selectedPlayer].Winnings.Weeks[7].Winning = Convert.ToInt32(txtWeek8.Text);
 
             SavePlayers(updatePlayers);
+        }
+
+        private void btnRetrieve_Click(object sender, EventArgs e)
+        {
+            displayResultsListBox.Items.Clear();
+
+            List<Person> displayPlayers = new List<Person>();
+
+            displayPlayers = GetPlayers();
+            
+            displayResultsListBox.Items.AddRange(displayPlayers.ToArray());
         }
     }
 }

@@ -69,7 +69,7 @@
             this.btnRetrieve = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.displayResultsListBox = new System.Windows.Forms.ListBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -456,7 +456,7 @@
             this.tabPage3.Controls.Add(this.btnRetrieve);
             this.tabPage3.Controls.Add(this.radioButton2);
             this.tabPage3.Controls.Add(this.radioButton1);
-            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.displayResultsListBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(520, 320);
@@ -471,6 +471,7 @@
             this.btnRetrieve.TabIndex = 3;
             this.btnRetrieve.Text = "Retrieve Results";
             this.btnRetrieve.UseVisualStyleBackColor = true;
+            this.btnRetrieve.Click += new System.EventHandler(this.btnRetrieve_Click);
             // 
             // radioButton2
             // 
@@ -496,13 +497,13 @@
             this.radioButton1.Text = "Sort by Player";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // displayResultsListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(33, 33);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(459, 173);
-            this.listBox1.TabIndex = 0;
+            this.displayResultsListBox.FormattingEnabled = true;
+            this.displayResultsListBox.Location = new System.Drawing.Point(33, 33);
+            this.displayResultsListBox.Name = "displayResultsListBox";
+            this.displayResultsListBox.Size = new System.Drawing.Size(459, 173);
+            this.displayResultsListBox.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -569,7 +570,7 @@
         private System.Windows.Forms.Button btnRetrieve;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox displayResultsListBox;
 
     }
 }
