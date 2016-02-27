@@ -132,6 +132,7 @@ namespace PokerTournament
                     txtWeek6.Text = searchPlayers[x].Winnings.Weeks[5].Winning.ToString();
                     txtWeek7.Text = searchPlayers[x].Winnings.Weeks[6].Winning.ToString();
                     txtWeek8.Text = searchPlayers[x].Winnings.Weeks[7].Winning.ToString();
+                    txtPlayerTotalWinnings.Text = searchPlayers[x].Winnings.CalculateTotalWinnings().ToString();
                     selectedPlayer = x;
                     x = searchPlayers.Count;
                     found = true;

@@ -16,17 +16,19 @@ namespace PokerTournament
         // Weeks object composed of Location and single-week winnings
         public Week[] Weeks { get; set; }
 
+        private double totalWinnings;
+
         // TotalWinnings is a derived field that should update
         // whenever there is a change in the Weeks array
         public double TotalWinnings
         {
             get
             {
-                return TotalWinnings;
+                return totalWinnings;
             }
             set
             {
-                TotalWinnings = CalculateTotalWinnings();
+                totalWinnings = CalculateTotalWinnings();
             }
         }
 
@@ -39,7 +41,7 @@ namespace PokerTournament
         }
 
         // method calculates total winnings for derived field
-        private double CalculateTotalWinnings()
+        public double CalculateTotalWinnings()
         {
             double sum = 0;
 

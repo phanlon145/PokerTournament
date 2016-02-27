@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtPlayerTot = new System.Windows.Forms.TextBox();
+            this.txtPlayerTotalWinnings = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.DarkGreen;
-            this.tabPage2.Controls.Add(this.txtPlayerTot);
+            this.tabPage2.Controls.Add(this.txtPlayerTotalWinnings);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
@@ -111,12 +111,12 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Winnings Entry";
             // 
-            // txtPlayerTot
+            // txtPlayerTotalWinnings
             // 
-            this.txtPlayerTot.Location = new System.Drawing.Point(391, 227);
-            this.txtPlayerTot.Name = "txtPlayerTot";
-            this.txtPlayerTot.Size = new System.Drawing.Size(100, 22);
-            this.txtPlayerTot.TabIndex = 25;
+            this.txtPlayerTotalWinnings.Location = new System.Drawing.Point(391, 227);
+            this.txtPlayerTotalWinnings.Name = "txtPlayerTotalWinnings";
+            this.txtPlayerTotalWinnings.Size = new System.Drawing.Size(100, 22);
+            this.txtPlayerTotalWinnings.TabIndex = 25;
             // 
             // label10
             // 
@@ -548,7 +548,7 @@
         private System.Windows.Forms.ComboBox comboState;
         private System.Windows.Forms.ComboBox comboBoxCasino;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox txtPlayerTot;
+        private System.Windows.Forms.TextBox txtPlayerTotalWinnings;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
