@@ -147,6 +147,7 @@ namespace PokerTournament
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // The update button uses the selected player index set with the search button to update winnings for a player
             List<Person> updatePlayers = new List<Person>();
 
             updatePlayers = GetPlayers();
@@ -161,6 +162,8 @@ namespace PokerTournament
             updatePlayers[selectedPlayer].Winnings.Weeks[7].Winning = Convert.ToInt32(txtWeek8.Text);
 
             SavePlayers(updatePlayers);
+
+            txtPlayerTotalWinnings.Text = updatePlayers[selectedPlayer].Winnings.CalculateTotalWinnings().ToString();
         }
 
         private void btnRetrieve_Click(object sender, EventArgs e)
