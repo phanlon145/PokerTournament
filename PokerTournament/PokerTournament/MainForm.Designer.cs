@@ -67,7 +67,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnRetrieve = new System.Windows.Forms.Button();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.sortByWinningsRadioButton = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.displayResultsListBox = new System.Windows.Forms.ListBox();
             this.tabPage2.SuspendLayout();
@@ -454,7 +454,7 @@
             // 
             this.tabPage3.BackColor = System.Drawing.Color.DarkGreen;
             this.tabPage3.Controls.Add(this.btnRetrieve);
-            this.tabPage3.Controls.Add(this.radioButton2);
+            this.tabPage3.Controls.Add(this.sortByWinningsRadioButton);
             this.tabPage3.Controls.Add(this.radioButton1);
             this.tabPage3.Controls.Add(this.displayResultsListBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -473,17 +473,18 @@
             this.btnRetrieve.UseVisualStyleBackColor = true;
             this.btnRetrieve.Click += new System.EventHandler(this.btnRetrieve_Click);
             // 
-            // radioButton2
+            // sortByWinningsRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.Color.MistyRose;
-            this.radioButton2.Location = new System.Drawing.Point(54, 251);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(114, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Sort by Winnings";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.sortByWinningsRadioButton.AutoSize = true;
+            this.sortByWinningsRadioButton.Checked = true;
+            this.sortByWinningsRadioButton.ForeColor = System.Drawing.Color.MistyRose;
+            this.sortByWinningsRadioButton.Location = new System.Drawing.Point(54, 251);
+            this.sortByWinningsRadioButton.Name = "sortByWinningsRadioButton";
+            this.sortByWinningsRadioButton.Size = new System.Drawing.Size(114, 17);
+            this.sortByWinningsRadioButton.TabIndex = 2;
+            this.sortByWinningsRadioButton.TabStop = true;
+            this.sortByWinningsRadioButton.Text = "Sort by Winnings";
+            this.sortByWinningsRadioButton.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -493,7 +494,6 @@
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(94, 17);
             this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Sort by Player";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -568,7 +568,7 @@
         private System.Windows.Forms.TextBox txtWeek3;
         private System.Windows.Forms.TextBox txtWeek2;
         private System.Windows.Forms.Button btnRetrieve;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton sortByWinningsRadioButton;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ListBox displayResultsListBox;
 

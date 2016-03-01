@@ -64,7 +64,7 @@ namespace PokerTournament
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}", FirstName, LastName, ssn, Winnings.CalculateTotalWinnings());
+            return string.Format("{0} {1} {2} {3} {4}", ssn, FirstName, LastName, ssn, Winnings.CalculateTotalWinnings());
 
         }
     }

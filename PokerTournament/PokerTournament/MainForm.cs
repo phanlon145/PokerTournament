@@ -173,7 +173,19 @@ namespace PokerTournament
             List<Person> displayPlayers = new List<Person>();
 
             displayPlayers = GetPlayers();
-            
+
+            if (sortByWinningsRadioButton.Checked == true)
+            {
+                displayPlayers.Sort(delegate (Person x, Person y)
+                {
+                    return x.Winnings.CalculateTotalWinnings().CompareTo(y.Winnings.CalculateTotalWinnings());
+                });
+            }
+            else
+            {
+                displayPlayers.Sort();
+            }
+
             displayResultsListBox.Items.AddRange(displayPlayers.ToArray());
         }
     }
