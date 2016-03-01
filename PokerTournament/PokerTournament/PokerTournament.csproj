@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Location.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="PokerFace.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

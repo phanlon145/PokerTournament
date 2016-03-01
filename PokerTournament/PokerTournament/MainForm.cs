@@ -36,22 +36,22 @@ namespace PokerTournament
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
 
-            List<Person> players = new List<Person>();
+            List<Player> players = new List<Player>();
 
             players = GetPlayers();
 
-            //create a new person object
-            Person newPerson = new Person(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
+            //create a new Player object
+            Player newPlayer = new Player(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
 
             for (int q = 0; q < players.Count; ++q)
             {
-                if (players[q].Equals(newPerson))
+                if (players[q].Equals(newPlayer))
                 {
                     MessageBox.Show("That employee already exists\nThe existing employee has been updated", "Duplicate employee message");
                     players.Remove(players[q]);
                 }
             }
-            players.Add(newPerson);
+            players.Add(newPlayer);
 
             SavePlayers(players);
 
@@ -60,16 +60,16 @@ namespace PokerTournament
 
         }
 
-        List<Person> GetPlayers()
+        List<Player> GetPlayers()
         {
             // This method gets all of the saved players or creates a file to store them if it does not exiat
             FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
-            List<Person> players = new List<Person>();
+            List<Player> players = new List<Player>();
             BinaryFormatter bformatter = new BinaryFormatter();
             while (infile.Position < infile.Length)
             {
-                Person newPerson = (Person)bformatter.Deserialize(infile);
-                players.Add(newPerson);
+                Player newPlayer = (Player)bformatter.Deserialize(infile);
+                players.Add(newPlayer);
             }
 
             infile.Close();
@@ -77,7 +77,7 @@ namespace PokerTournament
             return players;
         }
 
-        void SavePlayers(List<Person> players)
+        void SavePlayers(List<Player> players)
         {
             FileStream outfile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
 
@@ -87,7 +87,7 @@ namespace PokerTournament
             BinaryFormatter bformatter = new BinaryFormatter();
 
             // The updated list of employees is written to the file
-            foreach (Person x in players)
+            foreach (Player x in players)
             {
                 bformatter.Serialize(outfile, x);
             }
@@ -112,7 +112,7 @@ namespace PokerTournament
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<Person> searchPlayers = new List<Person>();
+            List<Player> searchPlayers = new List<Player>();
 
             searchPlayers = GetPlayers();
 
@@ -148,7 +148,7 @@ namespace PokerTournament
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             // The update button uses the selected player index set with the search button to update winnings for a player
-            List<Person> updatePlayers = new List<Person>();
+            List<Player> updatePlayers = new List<Player>();
 
             updatePlayers = GetPlayers();
 
@@ -170,13 +170,13 @@ namespace PokerTournament
         {
             displayResultsListBox.Items.Clear();
 
-            List<Person> displayPlayers = new List<Person>();
+            List<Player> displayPlayers = new List<Player>();
 
             displayPlayers = GetPlayers();
 
             if (sortByWinningsRadioButton.Checked == true)
             {
-                displayPlayers.Sort(delegate (Person x, Person y)
+                displayPlayers.Sort(delegate (Player x, Player y)
                 {
                     return x.Winnings.CalculateTotalWinnings().CompareTo(y.Winnings.CalculateTotalWinnings());
                 });

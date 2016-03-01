@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 namespace PokerTournament
 {
     [Serializable]
-    class Person : IComparable
+    abstract class Person : IComparable
     {
         // fields
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int ssn { get; set; }
-        public Winnings Winnings { get; set; }
 
         // constructor
         public Person(string firstName, string lastName, int ssn)
@@ -21,7 +20,6 @@ namespace PokerTournament
             FirstName = firstName;
             LastName = lastName;
             this.ssn = ssn;
-            this.Winnings = new Winnings();
         }
 
         public int CompareTo(object obj)
@@ -64,8 +62,7 @@ namespace PokerTournament
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3} {4}", ssn, FirstName, LastName, ssn, Winnings.CalculateTotalWinnings());
-
+            return string.Format("{0} {1} {2} {3}", ssn, FirstName, LastName, ssn);
         }
     }
 }
