@@ -21,7 +21,7 @@ namespace PokerTournament
             InitializeComponent();
         }
 
-        string path = @"Players.txt";
+        string path = @"Players.txt:";      
 
         private void newPlayerForm_Load(object sender, EventArgs e)
         {
@@ -41,6 +41,20 @@ namespace PokerTournament
             players = GetPlayers();
 
             //create a new Player object
+            try {
+                Convert.ToInt32(ssnBox.Text);
+            } catch (FormatException ex)
+            {
+                MessageBox.Show("Please Enter a valid SSN!", "Invalid Input!");
+                return;
+            }
+
+            if (ssnBox.Text.Length != 9)
+            {
+                MessageBox.Show("Please Enter a valid SSN!", "Invalid Input!");
+                return;
+            }
+
             Player newPlayer = new Player(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
 
             for (int q = 0; q < players.Count; ++q)
@@ -61,12 +75,12 @@ namespace PokerTournament
             lastNameBox.Clear();
             ssnBox.Clear();
 
-        }
+            }
 
         List<Player> GetPlayers()
         {
             // This method gets all of the saved players or creates a file to store them if it does not exist
-            FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
+            FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             List<Player> players = new List<Player>();
             BinaryFormatter bformatter = new BinaryFormatter();
             while (infile.Position < infile.Length)
@@ -191,5 +205,20 @@ namespace PokerTournament
 
             displayResultsListBox.Items.AddRange(displayPlayers.ToArray());
         }
+
+        private void closeMenuItem_Click(object sender, EventArgs e)
+        {
+            //Exit application
+            Application.Exit();
+        }
+
+        //Allow user to select new default save/load location and display path
+        private void filePathItem_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog.ShowDialog();
+            path = folderBrowserDialog.SelectedPath + "\\Players.txt";
+            currentPathBox.Text = "Current File Path: " + path;
+        }
+
     }
 }
