@@ -21,7 +21,7 @@ namespace PokerTournament
             InitializeComponent();
         }
 
-        string path = @"Players.txt:";      
+        string path = null;     
 
         private void newPlayerForm_Load(object sender, EventArgs e)
         {
@@ -35,6 +35,11 @@ namespace PokerTournament
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
+
+            if (path == null)
+            {
+                SpawnFileDialog();
+            }
 
             List<Player> players = new List<Player>();
 
@@ -96,6 +101,7 @@ namespace PokerTournament
 
         void SavePlayers(List<Player> players)
         {
+
             FileStream outfile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
 
             // The file is deleted with this next statement
@@ -111,6 +117,18 @@ namespace PokerTournament
 
             outfile.Close();
         }
+
+        //Allows user to specify file path
+        void SpawnFileDialog()
+        {
+            folderBrowserDialog.ShowDialog();
+            path = folderBrowserDialog.SelectedPath + "\\Players.txt";
+            currentPathBox.Text = "Current File Path: " + path;
+        }
+        
+        
+        
+        
         //cancel button closes form
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
@@ -124,11 +142,17 @@ namespace PokerTournament
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //check to see if file path specified, if not, prompt user
+            if (path == null)
+            {
+                MessageBox.Show("Please specify player file location", "Select File");
+                SpawnFileDialog();
+            }
+
             List<Player> searchPlayers = new List<Player>();
 
             searchPlayers = GetPlayers();
@@ -164,19 +188,32 @@ namespace PokerTournament
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //check to see if file path specified, if not, prompt user
+            if (path == null)
+            {
+                MessageBox.Show("Please specify player file location", "Select File");
+                SpawnFileDialog();
+            }
+
             // The update button uses the selected player index set with the search button to update winnings for a player
             List<Player> updatePlayers = new List<Player>();
 
             updatePlayers = GetPlayers();
 
-            updatePlayers[selectedPlayer].Winnings.Weeks[0].Winning = Convert.ToInt32(txtWeek1.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[1].Winning = Convert.ToInt32(txtWeek2.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[2].Winning = Convert.ToInt32(txtWeek3.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[3].Winning = Convert.ToInt32(txtWeek4.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[4].Winning = Convert.ToInt32(txtWeek5.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[5].Winning = Convert.ToInt32(txtWeek6.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[6].Winning = Convert.ToInt32(txtWeek7.Text);
-            updatePlayers[selectedPlayer].Winnings.Weeks[7].Winning = Convert.ToInt32(txtWeek8.Text);
+            try {
+                updatePlayers[selectedPlayer].Winnings.Weeks[0].Winning = Convert.ToInt32(txtWeek1.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[1].Winning = Convert.ToInt32(txtWeek2.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[2].Winning = Convert.ToInt32(txtWeek3.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[3].Winning = Convert.ToInt32(txtWeek4.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[4].Winning = Convert.ToInt32(txtWeek5.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[5].Winning = Convert.ToInt32(txtWeek6.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[6].Winning = Convert.ToInt32(txtWeek7.Text);
+                updatePlayers[selectedPlayer].Winnings.Weeks[7].Winning = Convert.ToInt32(txtWeek8.Text);
+            } catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
+            {
+                MessageBox.Show(ex.Message, "Invalid Input!");
+                return;
+            }
 
             SavePlayers(updatePlayers);
 
@@ -186,6 +223,12 @@ namespace PokerTournament
         private void btnRetrieve_Click(object sender, EventArgs e)
         {
             displayResultsListBox.Items.Clear();
+
+            if (path == null)
+            {
+                MessageBox.Show("Please specify player file location", "Select File");
+                SpawnFileDialog();
+            }
 
             List<Player> displayPlayers = new List<Player>();
 
@@ -215,10 +258,12 @@ namespace PokerTournament
         //Allow user to select new default save/load location and display path
         private void filePathItem_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog.ShowDialog();
-            path = folderBrowserDialog.SelectedPath + "\\Players.txt";
-            currentPathBox.Text = "Current File Path: " + path;
+            SpawnFileDialog();
         }
 
+        private void currentPathBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
