@@ -57,12 +57,15 @@ namespace PokerTournament
 
             //Confirm that the data was saved, and close the window
             MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
+            firstNameBox.Clear();
+            lastNameBox.Clear();
+            ssnBox.Clear();
 
         }
 
         List<Player> GetPlayers()
         {
-            // This method gets all of the saved players or creates a file to store them if it does not exiat
+            // This method gets all of the saved players or creates a file to store them if it does not exist
             FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
             List<Player> players = new List<Player>();
             BinaryFormatter bformatter = new BinaryFormatter();
@@ -178,7 +181,7 @@ namespace PokerTournament
             {
                 displayPlayers.Sort(delegate (Player x, Player y)
                 {
-                    return x.Winnings.CalculateTotalWinnings().CompareTo(y.Winnings.CalculateTotalWinnings());
+                    return y.Winnings.CalculateTotalWinnings().CompareTo(x.Winnings.CalculateTotalWinnings());
                 });
             }
             else

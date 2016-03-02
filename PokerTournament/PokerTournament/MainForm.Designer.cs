@@ -116,7 +116,7 @@
             this.txtPlayerTotalWinnings.Location = new System.Drawing.Point(391, 227);
             this.txtPlayerTotalWinnings.Name = "txtPlayerTotalWinnings";
             this.txtPlayerTotalWinnings.Size = new System.Drawing.Size(100, 22);
-            this.txtPlayerTotalWinnings.TabIndex = 25;
+            this.txtPlayerTotalWinnings.TabIndex = 12;
             // 
             // label10
             // 
@@ -213,7 +213,7 @@
             this.btnSearch.Location = new System.Drawing.Point(130, 27);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 15;
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -223,56 +223,56 @@
             this.txtWeek8.Location = new System.Drawing.Point(256, 201);
             this.txtWeek8.Name = "txtWeek8";
             this.txtWeek8.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek8.TabIndex = 14;
+            this.txtWeek8.TabIndex = 11;
             // 
             // txtWeek7
             // 
             this.txtWeek7.Location = new System.Drawing.Point(256, 163);
             this.txtWeek7.Name = "txtWeek7";
             this.txtWeek7.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek7.TabIndex = 13;
+            this.txtWeek7.TabIndex = 10;
             // 
             // txtWeek6
             // 
             this.txtWeek6.Location = new System.Drawing.Point(256, 125);
             this.txtWeek6.Name = "txtWeek6";
             this.txtWeek6.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek6.TabIndex = 12;
+            this.txtWeek6.TabIndex = 9;
             // 
             // txtWeek5
             // 
             this.txtWeek5.Location = new System.Drawing.Point(256, 84);
             this.txtWeek5.Name = "txtWeek5";
             this.txtWeek5.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek5.TabIndex = 11;
+            this.txtWeek5.TabIndex = 8;
             // 
             // txtWeek4
             // 
             this.txtWeek4.Location = new System.Drawing.Point(105, 201);
             this.txtWeek4.Name = "txtWeek4";
             this.txtWeek4.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek4.TabIndex = 10;
+            this.txtWeek4.TabIndex = 7;
             // 
             // txtWeek3
             // 
             this.txtWeek3.Location = new System.Drawing.Point(105, 163);
             this.txtWeek3.Name = "txtWeek3";
             this.txtWeek3.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek3.TabIndex = 9;
+            this.txtWeek3.TabIndex = 6;
             // 
             // txtWeek2
             // 
             this.txtWeek2.Location = new System.Drawing.Point(105, 125);
             this.txtWeek2.Name = "txtWeek2";
             this.txtWeek2.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek2.TabIndex = 8;
+            this.txtWeek2.TabIndex = 5;
             // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(256, 271);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 7;
+            this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -282,7 +282,7 @@
             this.btnAdd.Location = new System.Drawing.Point(130, 271);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Add Winnings";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
@@ -292,7 +292,7 @@
             this.txtWeek1.Location = new System.Drawing.Point(105, 84);
             this.txtWeek1.Name = "txtWeek1";
             this.txtWeek1.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek1.TabIndex = 5;
+            this.txtWeek1.TabIndex = 4;
             // 
             // comboState
             // 
@@ -300,7 +300,7 @@
             this.comboState.Location = new System.Drawing.Point(391, 27);
             this.comboState.Name = "comboState";
             this.comboState.Size = new System.Drawing.Size(121, 21);
-            this.comboState.TabIndex = 4;
+            this.comboState.TabIndex = 3;
             this.comboState.Text = "Select State";
             // 
             // comboBoxCasino
@@ -309,7 +309,7 @@
             this.comboBoxCasino.Location = new System.Drawing.Point(256, 27);
             this.comboBoxCasino.Name = "comboBoxCasino";
             this.comboBoxCasino.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCasino.TabIndex = 3;
+            this.comboBoxCasino.TabIndex = 2;
             this.comboBoxCasino.Text = "Select Casino";
             // 
             // label1
