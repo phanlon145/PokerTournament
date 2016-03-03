@@ -192,7 +192,7 @@ namespace PokerTournament
 
             updatePlayers = GetPlayers();
 
-            int currentWeek = Convert.ToInt16(weekBox.Text);
+            int currentWeek = Convert.ToInt16(weekBox.Text) - 1;
 
             currentPlayer.Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
 
