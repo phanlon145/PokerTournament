@@ -29,29 +29,21 @@
         private void InitializeComponent()
         {
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtPlayerTotalWinnings = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.weekLbl = new System.Windows.Forms.Label();
+            this.casinoLbl = new System.Windows.Forms.Label();
+            this.stateLbl = new System.Windows.Forms.Label();
+            this.casinoBox = new System.Windows.Forms.TextBox();
+            this.stateBox = new System.Windows.Forms.TextBox();
+            this.totalWinnings = new System.Windows.Forms.Label();
+            this.winningsBox = new System.Windows.Forms.TextBox();
+            this.winningsLbl = new System.Windows.Forms.Label();
+            this.weekBox = new System.Windows.Forms.ComboBox();
+            this.selectPlayer = new System.Windows.Forms.Label();
+            this.playerBox = new System.Windows.Forms.Label();
+            this.playerLbl = new System.Windows.Forms.Label();
+            this.totalWinningsLbl = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.txtWeek8 = new System.Windows.Forms.TextBox();
-            this.txtWeek7 = new System.Windows.Forms.TextBox();
-            this.txtWeek6 = new System.Windows.Forms.TextBox();
-            this.txtWeek5 = new System.Windows.Forms.TextBox();
-            this.txtWeek4 = new System.Windows.Forms.TextBox();
-            this.txtWeek3 = new System.Windows.Forms.TextBox();
-            this.txtWeek2 = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.txtWeek1 = new System.Windows.Forms.TextBox();
-            this.comboState = new System.Windows.Forms.ComboBox();
-            this.comboBoxCasino = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ssnSearchForTextBox = new System.Windows.Forms.MaskedTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -86,29 +78,21 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.DarkGreen;
-            this.tabPage2.Controls.Add(this.txtPlayerTotalWinnings);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.weekLbl);
+            this.tabPage2.Controls.Add(this.casinoLbl);
+            this.tabPage2.Controls.Add(this.stateLbl);
+            this.tabPage2.Controls.Add(this.casinoBox);
+            this.tabPage2.Controls.Add(this.stateBox);
+            this.tabPage2.Controls.Add(this.totalWinnings);
+            this.tabPage2.Controls.Add(this.winningsBox);
+            this.tabPage2.Controls.Add(this.winningsLbl);
+            this.tabPage2.Controls.Add(this.weekBox);
+            this.tabPage2.Controls.Add(this.selectPlayer);
+            this.tabPage2.Controls.Add(this.playerBox);
+            this.tabPage2.Controls.Add(this.playerLbl);
+            this.tabPage2.Controls.Add(this.totalWinningsLbl);
             this.tabPage2.Controls.Add(this.btnSearch);
-            this.tabPage2.Controls.Add(this.txtWeek8);
-            this.tabPage2.Controls.Add(this.txtWeek7);
-            this.tabPage2.Controls.Add(this.txtWeek6);
-            this.tabPage2.Controls.Add(this.txtWeek5);
-            this.tabPage2.Controls.Add(this.txtWeek4);
-            this.tabPage2.Controls.Add(this.txtWeek3);
-            this.tabPage2.Controls.Add(this.txtWeek2);
             this.tabPage2.Controls.Add(this.btnUpdate);
-            this.tabPage2.Controls.Add(this.btnAdd);
-            this.tabPage2.Controls.Add(this.txtWeek1);
-            this.tabPage2.Controls.Add(this.comboState);
-            this.tabPage2.Controls.Add(this.comboBoxCasino);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.ssnSearchForTextBox);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -118,102 +102,131 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Winnings Entry";
             // 
-            // txtPlayerTotalWinnings
+            // weekLbl
             // 
-            this.txtPlayerTotalWinnings.Location = new System.Drawing.Point(391, 227);
-            this.txtPlayerTotalWinnings.Name = "txtPlayerTotalWinnings";
-            this.txtPlayerTotalWinnings.Size = new System.Drawing.Size(100, 22);
-            this.txtPlayerTotalWinnings.TabIndex = 12;
+            this.weekLbl.AutoSize = true;
+            this.weekLbl.ForeColor = System.Drawing.Color.MistyRose;
+            this.weekLbl.Location = new System.Drawing.Point(24, 89);
+            this.weekLbl.Name = "weekLbl";
+            this.weekLbl.Size = new System.Drawing.Size(66, 13);
+            this.weekLbl.TabIndex = 36;
+            this.weekLbl.Text = "Enter Week";
             // 
-            // label10
+            // casinoLbl
             // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.MistyRose;
-            this.label10.Location = new System.Drawing.Point(388, 211);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 13);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Player Total";
+            this.casinoLbl.AutoSize = true;
+            this.casinoLbl.ForeColor = System.Drawing.Color.MistyRose;
+            this.casinoLbl.Location = new System.Drawing.Point(334, 89);
+            this.casinoLbl.Name = "casinoLbl";
+            this.casinoLbl.Size = new System.Drawing.Size(72, 13);
+            this.casinoLbl.TabIndex = 35;
+            this.casinoLbl.Text = "Enter Casino";
             // 
-            // label9
+            // stateLbl
             // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.MistyRose;
-            this.label9.Location = new System.Drawing.Point(105, 109);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 13);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Week 2";
+            this.stateLbl.AutoSize = true;
+            this.stateLbl.ForeColor = System.Drawing.Color.MistyRose;
+            this.stateLbl.Location = new System.Drawing.Point(183, 89);
+            this.stateLbl.Name = "stateLbl";
+            this.stateLbl.Size = new System.Drawing.Size(63, 13);
+            this.stateLbl.TabIndex = 34;
+            this.stateLbl.Text = "Enter State";
             // 
-            // label8
+            // casinoBox
             // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.MistyRose;
-            this.label8.Location = new System.Drawing.Point(105, 150);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Week 3";
+            this.casinoBox.Location = new System.Drawing.Point(334, 108);
+            this.casinoBox.Name = "casinoBox";
+            this.casinoBox.Size = new System.Drawing.Size(115, 22);
+            this.casinoBox.TabIndex = 33;
             // 
-            // label7
+            // stateBox
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.MistyRose;
-            this.label7.Location = new System.Drawing.Point(253, 70);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Week 5";
+            this.stateBox.Location = new System.Drawing.Point(183, 108);
+            this.stateBox.Name = "stateBox";
+            this.stateBox.Size = new System.Drawing.Size(119, 22);
+            this.stateBox.TabIndex = 32;
             // 
-            // label6
+            // totalWinnings
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.MistyRose;
-            this.label6.Location = new System.Drawing.Point(253, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Week 6";
+            this.totalWinnings.AutoSize = true;
+            this.totalWinnings.ForeColor = System.Drawing.Color.MistyRose;
+            this.totalWinnings.Location = new System.Drawing.Point(388, 199);
+            this.totalWinnings.Name = "totalWinnings";
+            this.totalWinnings.Size = new System.Drawing.Size(0, 13);
+            this.totalWinnings.TabIndex = 31;
             // 
-            // label5
+            // winningsBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.MistyRose;
-            this.label5.Location = new System.Drawing.Point(253, 150);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Week 7";
+            this.winningsBox.Location = new System.Drawing.Point(130, 199);
+            this.winningsBox.Name = "winningsBox";
+            this.winningsBox.Size = new System.Drawing.Size(100, 22);
+            this.winningsBox.TabIndex = 30;
             // 
-            // label4
+            // winningsLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.MistyRose;
-            this.label4.Location = new System.Drawing.Point(253, 188);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Week 8";
+            this.winningsLbl.AutoSize = true;
+            this.winningsLbl.ForeColor = System.Drawing.Color.MistyRose;
+            this.winningsLbl.Location = new System.Drawing.Point(21, 199);
+            this.winningsLbl.Name = "winningsLbl";
+            this.winningsLbl.Size = new System.Drawing.Size(97, 13);
+            this.winningsLbl.TabIndex = 29;
+            this.winningsLbl.Text = "Week\'s Winnings";
             // 
-            // label3
+            // weekBox
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.MistyRose;
-            this.label3.Location = new System.Drawing.Point(105, 188);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Week 4";
+            this.weekBox.FormattingEnabled = true;
+            this.weekBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.weekBox.Location = new System.Drawing.Point(24, 108);
+            this.weekBox.Name = "weekBox";
+            this.weekBox.Size = new System.Drawing.Size(121, 21);
+            this.weekBox.TabIndex = 28;
+            this.weekBox.Text = "Select Week";
+            this.weekBox.TextChanged += new System.EventHandler(this.weekBox_TextChanged);
             // 
-            // label2
+            // selectPlayer
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.MistyRose;
-            this.label2.Location = new System.Drawing.Point(105, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Week 1";
+            this.selectPlayer.AutoSize = true;
+            this.selectPlayer.ForeColor = System.Drawing.Color.MistyRose;
+            this.selectPlayer.Location = new System.Drawing.Point(366, 32);
+            this.selectPlayer.Name = "selectPlayer";
+            this.selectPlayer.Size = new System.Drawing.Size(0, 13);
+            this.selectPlayer.TabIndex = 27;
+            // 
+            // playerBox
+            // 
+            this.playerBox.AutoSize = true;
+            this.playerBox.Location = new System.Drawing.Point(71, 89);
+            this.playerBox.Name = "playerBox";
+            this.playerBox.Size = new System.Drawing.Size(0, 13);
+            this.playerBox.TabIndex = 26;
+            // 
+            // playerLbl
+            // 
+            this.playerLbl.AutoSize = true;
+            this.playerLbl.ForeColor = System.Drawing.Color.MistyRose;
+            this.playerLbl.Location = new System.Drawing.Point(253, 32);
+            this.playerLbl.Name = "playerLbl";
+            this.playerLbl.Size = new System.Drawing.Size(86, 13);
+            this.playerLbl.TabIndex = 25;
+            this.playerLbl.Text = "Selected Player:";
+            // 
+            // totalWinningsLbl
+            // 
+            this.totalWinningsLbl.AutoSize = true;
+            this.totalWinningsLbl.ForeColor = System.Drawing.Color.MistyRose;
+            this.totalWinningsLbl.Location = new System.Drawing.Point(301, 199);
+            this.totalWinningsLbl.Name = "totalWinningsLbl";
+            this.totalWinningsLbl.Size = new System.Drawing.Size(65, 13);
+            this.totalWinningsLbl.TabIndex = 24;
+            this.totalWinningsLbl.Text = "Player Total";
             // 
             // btnSearch
             // 
@@ -225,99 +238,15 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtWeek8
-            // 
-            this.txtWeek8.Location = new System.Drawing.Point(256, 201);
-            this.txtWeek8.Name = "txtWeek8";
-            this.txtWeek8.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek8.TabIndex = 11;
-            // 
-            // txtWeek7
-            // 
-            this.txtWeek7.Location = new System.Drawing.Point(256, 163);
-            this.txtWeek7.Name = "txtWeek7";
-            this.txtWeek7.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek7.TabIndex = 10;
-            // 
-            // txtWeek6
-            // 
-            this.txtWeek6.Location = new System.Drawing.Point(256, 125);
-            this.txtWeek6.Name = "txtWeek6";
-            this.txtWeek6.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek6.TabIndex = 9;
-            // 
-            // txtWeek5
-            // 
-            this.txtWeek5.Location = new System.Drawing.Point(256, 84);
-            this.txtWeek5.Name = "txtWeek5";
-            this.txtWeek5.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek5.TabIndex = 8;
-            // 
-            // txtWeek4
-            // 
-            this.txtWeek4.Location = new System.Drawing.Point(105, 201);
-            this.txtWeek4.Name = "txtWeek4";
-            this.txtWeek4.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek4.TabIndex = 7;
-            // 
-            // txtWeek3
-            // 
-            this.txtWeek3.Location = new System.Drawing.Point(105, 163);
-            this.txtWeek3.Name = "txtWeek3";
-            this.txtWeek3.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek3.TabIndex = 6;
-            // 
-            // txtWeek2
-            // 
-            this.txtWeek2.Location = new System.Drawing.Point(105, 125);
-            this.txtWeek2.Name = "txtWeek2";
-            this.txtWeek2.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek2.TabIndex = 5;
-            // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(256, 271);
+            this.btnUpdate.Location = new System.Drawing.Point(217, 256);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(130, 271);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 13;
-            this.btnAdd.Text = "Add Winnings";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtWeek1
-            // 
-            this.txtWeek1.Location = new System.Drawing.Point(105, 84);
-            this.txtWeek1.Name = "txtWeek1";
-            this.txtWeek1.Size = new System.Drawing.Size(100, 22);
-            this.txtWeek1.TabIndex = 4;
-            // 
-            // comboState
-            // 
-            this.comboState.FormattingEnabled = true;
-            this.comboState.Location = new System.Drawing.Point(391, 27);
-            this.comboState.Name = "comboState";
-            this.comboState.Size = new System.Drawing.Size(121, 21);
-            this.comboState.TabIndex = 3;
-            this.comboState.Text = "Select State";
-            // 
-            // comboBoxCasino
-            // 
-            this.comboBoxCasino.FormattingEnabled = true;
-            this.comboBoxCasino.Location = new System.Drawing.Point(256, 27);
-            this.comboBoxCasino.Name = "comboBoxCasino";
-            this.comboBoxCasino.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCasino.TabIndex = 2;
-            this.comboBoxCasino.Text = "Select Casino";
             // 
             // label1
             // 
@@ -554,10 +483,9 @@
             this.currentPathBox.Location = new System.Drawing.Point(60, 5);
             this.currentPathBox.Margin = new System.Windows.Forms.Padding(0);
             this.currentPathBox.Name = "currentPathBox";
-            this.currentPathBox.Size = new System.Drawing.Size(230, 15);
+            this.currentPathBox.Size = new System.Drawing.Size(130, 15);
             this.currentPathBox.TabIndex = 12;
             this.currentPathBox.Text = "Current File Path: None";
-            this.currentPathBox.Click += new System.EventHandler(this.currentPathBox_Click);
             // 
             // MainForm
             // 
@@ -604,29 +532,9 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox ssnSearchForTextBox;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtWeek1;
-        private System.Windows.Forms.ComboBox comboState;
-        private System.Windows.Forms.ComboBox comboBoxCasino;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox txtPlayerTotalWinnings;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label totalWinningsLbl;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtWeek8;
-        private System.Windows.Forms.TextBox txtWeek7;
-        private System.Windows.Forms.TextBox txtWeek6;
-        private System.Windows.Forms.TextBox txtWeek5;
-        private System.Windows.Forms.TextBox txtWeek4;
-        private System.Windows.Forms.TextBox txtWeek3;
-        private System.Windows.Forms.TextBox txtWeek2;
         private System.Windows.Forms.Button btnRetrieve;
         private System.Windows.Forms.RadioButton sortByWinningsRadioButton;
         private System.Windows.Forms.RadioButton radioButton1;
@@ -637,5 +545,17 @@
         private System.Windows.Forms.ToolStripMenuItem closeMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Label currentPathBox;
+        private System.Windows.Forms.TextBox winningsBox;
+        private System.Windows.Forms.Label winningsLbl;
+        private System.Windows.Forms.ComboBox weekBox;
+        private System.Windows.Forms.Label selectPlayer;
+        private System.Windows.Forms.Label playerBox;
+        private System.Windows.Forms.Label playerLbl;
+        private System.Windows.Forms.Label totalWinnings;
+        private System.Windows.Forms.TextBox casinoBox;
+        private System.Windows.Forms.TextBox stateBox;
+        private System.Windows.Forms.Label weekLbl;
+        private System.Windows.Forms.Label casinoLbl;
+        private System.Windows.Forms.Label stateLbl;
     }
 }

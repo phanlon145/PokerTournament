@@ -14,7 +14,7 @@ namespace PokerTournament
 {
     public partial class MainForm : Form
     {
-        int selectedPlayer = 0; // This is used by the winnings tab search button to identify which index matches the search
+        static Player currentPlayer;
 
         public MainForm()
         {
@@ -159,25 +159,17 @@ namespace PokerTournament
 
             bool found = false;
 
-            for (int x = 0; x < searchPlayers.Count; ++x)
+            for (int i = 0; i < searchPlayers.Count; i++)
             {
-
-                if (Convert.ToInt32(ssnSearchForTextBox.Text) == searchPlayers[x].ssn)
+                if (Convert.ToInt32(ssnSearchForTextBox.Text) == searchPlayers[i].ssn)
                 {
-                    txtWeek1.Text = searchPlayers[x].Winnings.Weeks[0].Winning.ToString();
-                    txtWeek2.Text = searchPlayers[x].Winnings.Weeks[1].Winning.ToString();
-                    txtWeek3.Text = searchPlayers[x].Winnings.Weeks[2].Winning.ToString();
-                    txtWeek4.Text = searchPlayers[x].Winnings.Weeks[3].Winning.ToString();
-                    txtWeek5.Text = searchPlayers[x].Winnings.Weeks[4].Winning.ToString();
-                    txtWeek6.Text = searchPlayers[x].Winnings.Weeks[5].Winning.ToString();
-                    txtWeek7.Text = searchPlayers[x].Winnings.Weeks[6].Winning.ToString();
-                    txtWeek8.Text = searchPlayers[x].Winnings.Weeks[7].Winning.ToString();
-                    txtPlayerTotalWinnings.Text = searchPlayers[x].Winnings.CalculateTotalWinnings().ToString();
-                    selectedPlayer = x;
-                    x = searchPlayers.Count;
+                    selectPlayer.Text = searchPlayers[i].FirstName + " " + searchPlayers[i].LastName;
+                    currentPlayer = searchPlayers[i];
                     found = true;
+                    totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
                 }
             }
+
             if (found == false)
             {
                 MessageBox.Show("No players with the SSN exist", "Player not found");
@@ -200,26 +192,15 @@ namespace PokerTournament
 
             updatePlayers = GetPlayers();
 
-            try {
-                updatePlayers[selectedPlayer].Winnings.Weeks[0].Winning = Convert.ToInt32(txtWeek1.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[1].Winning = Convert.ToInt32(txtWeek2.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[2].Winning = Convert.ToInt32(txtWeek3.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[3].Winning = Convert.ToInt32(txtWeek4.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[4].Winning = Convert.ToInt32(txtWeek5.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[5].Winning = Convert.ToInt32(txtWeek6.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[6].Winning = Convert.ToInt32(txtWeek7.Text);
-                updatePlayers[selectedPlayer].Winnings.Weeks[7].Winning = Convert.ToInt32(txtWeek8.Text);
-            } catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
-            {
-                MessageBox.Show(ex.Message, "Invalid Input!");
-                return;
-            }
+            int currentWeek = Convert.ToInt16(weekBox.Text);
 
-            SavePlayers(updatePlayers);
+            currentPlayer.Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
 
-            txtPlayerTotalWinnings.Text = updatePlayers[selectedPlayer].Winnings.CalculateTotalWinnings().ToString();
+            currentPlayer.Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
+
+            totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
         }
-
+        
         private void btnRetrieve_Click(object sender, EventArgs e)
         {
             displayResultsListBox.Items.Clear();
@@ -261,9 +242,11 @@ namespace PokerTournament
             SpawnFileDialog();
         }
 
-        private void currentPathBox_Click(object sender, EventArgs e)
+        private void weekBox_TextChanged(object sender, EventArgs e)
         {
-
+            winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text)].Winning.ToString();
+            stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text)].Location.State;
+            casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text)].Location.Name;
         }
     }
 }
