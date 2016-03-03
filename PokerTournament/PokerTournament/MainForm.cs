@@ -15,6 +15,7 @@ namespace PokerTournament
     public partial class MainForm : Form
     {
         static Player currentPlayer;
+        static int playerPos;
 
         public MainForm()
         {
@@ -165,6 +166,7 @@ namespace PokerTournament
                 {
                     selectPlayer.Text = searchPlayers[i].FirstName + " " + searchPlayers[i].LastName;
                     currentPlayer = searchPlayers[i];
+                    playerPos = i;
                     found = true;
                     totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
                 }
@@ -195,10 +197,14 @@ namespace PokerTournament
             int currentWeek = Convert.ToInt16(weekBox.Text) - 1;
 
             currentPlayer.Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
+            updatePlayers[playerPos].Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
 
             currentPlayer.Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
+            updatePlayers[playerPos].Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
 
-            totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
+            totalWinnings.Text = updatePlayers[playerPos].Winnings.CalculateTotalWinnings().ToString();
+
+            SavePlayers(updatePlayers);
         }
         
         private void btnRetrieve_Click(object sender, EventArgs e)
@@ -244,9 +250,9 @@ namespace PokerTournament
 
         private void weekBox_TextChanged(object sender, EventArgs e)
         {
-            winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text)].Winning.ToString();
-            stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text)].Location.State;
-            casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text)].Location.Name;
+            winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
+            stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
+            casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
         }
     }
 }
