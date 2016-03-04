@@ -224,7 +224,7 @@
             this.totalWinningsLbl.ForeColor = System.Drawing.Color.MistyRose;
             this.totalWinningsLbl.Location = new System.Drawing.Point(301, 199);
             this.totalWinningsLbl.Name = "totalWinningsLbl";
-            this.totalWinningsLbl.Size = new System.Drawing.Size(65, 13);
+            this.totalWinningsLbl.Size = new System.Drawing.Size(64, 13);
             this.totalWinningsLbl.TabIndex = 24;
             this.totalWinningsLbl.Text = "Player Total";
             // 
@@ -301,22 +301,22 @@
             // saveBtn
             // 
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.saveBtn.Location = new System.Drawing.Point(147, 267);
+            this.saveBtn.Location = new System.Drawing.Point(59, 267);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(141, 26);
+            this.saveBtn.Size = new System.Drawing.Size(90, 26);
             this.saveBtn.TabIndex = 3;
-            this.saveBtn.Text = "Save and Close";
+            this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click_1);
             // 
             // cancelBtn
             // 
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cancelBtn.Location = new System.Drawing.Point(23, 267);
+            this.cancelBtn.Location = new System.Drawing.Point(218, 267);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(78, 26);
             this.cancelBtn.TabIndex = 16;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = "Exit";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click_1);
             // 
@@ -354,7 +354,7 @@
             this.titleLbl.ForeColor = System.Drawing.Color.MistyRose;
             this.titleLbl.Location = new System.Drawing.Point(12, 22);
             this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(159, 25);
+            this.titleLbl.Size = new System.Drawing.Size(160, 25);
             this.titleLbl.TabIndex = 12;
             this.titleLbl.Text = "New Player Entry";
             // 
