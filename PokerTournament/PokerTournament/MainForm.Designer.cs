@@ -137,14 +137,14 @@
             this.casinoBox.Location = new System.Drawing.Point(334, 108);
             this.casinoBox.Name = "casinoBox";
             this.casinoBox.Size = new System.Drawing.Size(115, 22);
-            this.casinoBox.TabIndex = 33;
+            this.casinoBox.TabIndex = 4;
             // 
             // stateBox
             // 
             this.stateBox.Location = new System.Drawing.Point(183, 108);
             this.stateBox.Name = "stateBox";
             this.stateBox.Size = new System.Drawing.Size(119, 22);
-            this.stateBox.TabIndex = 32;
+            this.stateBox.TabIndex = 3;
             // 
             // totalWinnings
             // 
@@ -160,7 +160,7 @@
             this.winningsBox.Location = new System.Drawing.Point(130, 199);
             this.winningsBox.Name = "winningsBox";
             this.winningsBox.Size = new System.Drawing.Size(100, 22);
-            this.winningsBox.TabIndex = 30;
+            this.winningsBox.TabIndex = 5;
             // 
             // winningsLbl
             // 
@@ -187,7 +187,7 @@
             this.weekBox.Location = new System.Drawing.Point(24, 108);
             this.weekBox.Name = "weekBox";
             this.weekBox.Size = new System.Drawing.Size(121, 21);
-            this.weekBox.TabIndex = 28;
+            this.weekBox.TabIndex = 2;
             this.weekBox.Text = "Select Week";
             this.weekBox.TextChanged += new System.EventHandler(this.weekBox_TextChanged);
             // 
@@ -243,7 +243,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(217, 256);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
