@@ -16,25 +16,34 @@ namespace PokerTournament
     {
         static Player currentPlayer;
         static int playerPos;
+        private DataUtility util;
 
         public MainForm()
         {
             InitializeComponent();
+            util = new DataUtility();
         }
 
-        string path = null;     
+        //string path = null;
+
+        // checks save path is not null
+        private void VerifyPathSet()
+        {
+            if (util.Path == null)
+            {
+                MessageBox.Show("Please specify player file location", "Select File");
+                SpawnFileDialog();
+            }
+        }
+
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
 
-            if (path == null)
-            {
-                SpawnFileDialog();
-            }
+            VerifyPathSet();
+            util.RefreshPlayerList();
 
-            List<Player> players = new List<Player>();
-
-            players = GetPlayers();
+            //List<Player> players = util.RefreshPlayerList();
 
             //create a new Player object
             try {
@@ -53,17 +62,17 @@ namespace PokerTournament
 
             Player newPlayer = new Player(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
 
-            for (int q = 0; q < players.Count; ++q)
+            for (int q = 0; q < util.Players.Count; ++q)
             {
-                if (players[q].Equals(newPlayer))
+                if (util.Players[q].Equals(newPlayer))
                 {
                     MessageBox.Show("That employee already exists\nThe existing employee has been updated", "Duplicate employee message");
-                    players.Remove(players[q]);
+                    util.Players.Remove(util.Players[q]);
                 }
             }
-            players.Add(newPlayer);
-
-            SavePlayers(players);
+            util.Players.Add(newPlayer);
+            util.SavePlayers();
+            //SavePlayers(players);
 
             //Confirm that the data was saved, and close the window
             MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
@@ -73,78 +82,72 @@ namespace PokerTournament
 
         }
 
-        List<Player> GetPlayers()
-        {
-            // This method gets all of the saved players or creates a file to store them if it does not exist
-            FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            List<Player> players = new List<Player>();
-            BinaryFormatter bformatter = new BinaryFormatter();
-            while (infile.Position < infile.Length)
-            {
-                Player newPlayer = (Player)bformatter.Deserialize(infile);
-                players.Add(newPlayer);
-            }
+        //List<Player> RefreshPlayerList()
+        //{
+        //    // This method gets all of the saved players or creates a file to store them if it does not exist
+        //    FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        //    List<Player> players = new List<Player>();
+        //    BinaryFormatter bformatter = new BinaryFormatter();
+        //    while (infile.Position < infile.Length)
+        //    {
+        //        Player newPlayer = (Player)bformatter.Deserialize(infile);
+        //        players.Add(newPlayer);
+        //    }
 
-            infile.Close();
+        //    infile.Close();
 
-            return players;
-        }
+        //    return players;
+        //}
 
-        void SavePlayers(List<Player> players)
-        {
+        //void SavePlayers(List<Player> players)
+        //{
 
-            FileStream outfile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
+        //    FileStream outfile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
 
-            // The file is deleted with this next statement
-            outfile.SetLength(0);
+        //    // The file is deleted with this next statement
+        //    outfile.SetLength(0);
 
-            BinaryFormatter bformatter = new BinaryFormatter();
+        //    BinaryFormatter bformatter = new BinaryFormatter();
 
-            // The updated list of employees is written to the file
-            foreach (Player x in players)
-            {
-                bformatter.Serialize(outfile, x);
-            }
+        //    // The updated list of employees is written to the file
+        //    foreach (Player x in players)
+        //    {
+        //        bformatter.Serialize(outfile, x);
+        //    }
 
-            outfile.Close();
-        }
+        //    outfile.Close();
+        //}
 
         //Allows user to specify file path
         void SpawnFileDialog()
         {
             folderBrowserDialog.ShowDialog();
-            path = folderBrowserDialog.SelectedPath + "\\Players.txt";
-            currentPathBox.Text = "Current File Path: " + path;
+            util.Path = folderBrowserDialog.SelectedPath + "\\Players.txt";
+            currentPathBox.Text = "Current File Path: " + util.Path;
         }
         
         //cancel button closes form
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
-            Form.ActiveForm.Close();
+            ActiveForm.Close();
         }
 
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //check to see if file path specified, if not, prompt user
-            if (path == null)
-            {
-                MessageBox.Show("Please specify player file location", "Select File");
-                SpawnFileDialog();
-            }
+            VerifyPathSet();
+            util.RefreshPlayerList();
 
-            List<Player> searchPlayers = new List<Player>();
-
-            searchPlayers = GetPlayers();
+            //List<Player> searchPlayers = util.RefreshPlayerList();
 
             bool found = false;
 
-            for (int i = 0; i < searchPlayers.Count; i++)
+            for (int i = 0; i < util.Players.Count; i++)
             {
-                if (Convert.ToInt32(ssnSearchForTextBox.Text) == searchPlayers[i].ssn)
+                if (Convert.ToInt32(ssnSearchForTextBox.Text) == util.Players[i].ssn)
                 {
-                    selectPlayer.Text = searchPlayers[i].FirstName + " " + searchPlayers[i].LastName;
-                    currentPlayer = searchPlayers[i];
+                    selectPlayer.Text = util.Players[i].FirstName + " " + util.Players[i].LastName;
+                    currentPlayer = util.Players[i];
                     playerPos = i;
                     found = true;
                     totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
@@ -168,58 +171,49 @@ namespace PokerTournament
                 return;
             }
 
-            //check to see if file path specified, if not, prompt user
-            if (path == null)
-            {
-                MessageBox.Show("Please specify player file location", "Select File");
-                SpawnFileDialog();
-            }
-
+            VerifyPathSet();
+            util.RefreshPlayerList();
             // The update button uses the selected player index set with the search button to update winnings for a player
-            List<Player> updatePlayers = new List<Player>();
-
-            updatePlayers = GetPlayers();
+            //List<Player> updatePlayers = util.RefreshPlayerList();
 
             int currentWeek = Convert.ToInt16(weekBox.Text) - 1;
 
             currentPlayer.Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
-            updatePlayers[playerPos].Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
+            util.Players[playerPos].Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
 
             currentPlayer.Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
-            updatePlayers[playerPos].Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
+            util.Players[playerPos].Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
 
-            totalWinnings.Text = updatePlayers[playerPos].Winnings.CalculateTotalWinnings().ToString();
+            totalWinnings.Text = util.Players[playerPos].Winnings.CalculateTotalWinnings().ToString();
 
-            SavePlayers(updatePlayers);
+            util.Players = util.Players;
+            util.SavePlayers();
+
+            //SavePlayers(updatePlayers);
         }
         
         private void btnRetrieve_Click(object sender, EventArgs e)
         {
             displayResultsListBox.Items.Clear();
 
-            if (path == null)
+            VerifyPathSet();
+            util.RefreshPlayerList();
+
+            //List<Player> displayPlayers = util.RefreshPlayerList();
+
+            if (sortByWinningsRadioButton.Checked)
             {
-                MessageBox.Show("Please specify player file location", "Select File");
-                SpawnFileDialog();
-            }
-
-            List<Player> displayPlayers = new List<Player>();
-
-            displayPlayers = GetPlayers();
-
-            if (sortByWinningsRadioButton.Checked == true)
-            {
-                displayPlayers.Sort(delegate (Player x, Player y)
+                util.Players.Sort(delegate (Player x, Player y)
                 {
                     return y.Winnings.CalculateTotalWinnings().CompareTo(x.Winnings.CalculateTotalWinnings());
                 });
             }
             else
             {
-                displayPlayers.Sort();
+                util.Players.Sort();
             }
 
-            displayResultsListBox.Items.AddRange(displayPlayers.ToArray());
+            displayResultsListBox.Items.AddRange(util.Players.ToArray());
         }
 
 
