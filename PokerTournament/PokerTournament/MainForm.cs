@@ -25,9 +25,9 @@ namespace PokerTournament
             util = new DataUtility();
         }
 
-
+         //----------------------------//
         //// New Player Tab Methods ////
-
+       //----------------------------//
 
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
@@ -79,9 +79,9 @@ namespace PokerTournament
             ActiveForm.Close();
         }
 
-
+         //--------------------------//
         //// Winnings Tab Methods ////
-
+       //--------------------------//
 
         // search button searches players by ssn
         private void btnSearch_Click(object sender, EventArgs e)
@@ -156,9 +156,9 @@ namespace PokerTournament
             }
         }
 
-
+         //-------------------------//
         //// Results Tab Methods ////
-
+       //-------------------------//
 
         // retrieve button displays all players, sorted by either winnings or ssn
         private void btnRetrieve_Click(object sender, EventArgs e)
@@ -201,9 +201,9 @@ namespace PokerTournament
             SpawnFileDialog();
         }
 
-
+         //-------------------//
         //// Other Methods ////
-
+       //-------------------//
 
         // checks save path is not null
         private void VerifyPathSet()
