@@ -484,6 +484,7 @@
             this.currentPathBox.Size = new System.Drawing.Size(130, 15);
             this.currentPathBox.TabIndex = 12;
             this.currentPathBox.Text = "Current File Path: None";
+            this.currentPathBox.Click += new System.EventHandler(this.currentPathBox_Click);
             // 
             // MainForm
             // 
