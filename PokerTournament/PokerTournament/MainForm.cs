@@ -24,8 +24,6 @@ namespace PokerTournament
             util = new DataUtility();
         }
 
-        //string path = null;
-
         // checks save path is not null
         private void VerifyPathSet()
         {
@@ -39,84 +37,46 @@ namespace PokerTournament
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
-
+            // validate ssn input and assign converted int to variable
+            int ssn;
+            if(!int.TryParse(ssnBox.Text, out ssn) || ssnBox.Text.Length != 9)
+            {
+                // alert user if invalid entry by length or unable to parse
+                MessageBox.Show("Please Enter a valid SSN!", "Invalid Input!");
+                return;
+            }
+            // verify the path is set
             VerifyPathSet();
+            // update existing player list
             util.RefreshPlayerList();
+            // instantiate new player
+            Player newPlayer = new Player(firstNameBox.Text, lastNameBox.Text, ssn);
 
-            //List<Player> players = util.RefreshPlayerList();
-
-            //create a new Player object
-            try {
-                Convert.ToInt32(ssnBox.Text);
-            } catch (FormatException ex)
+            // check if new player is a duplicate,
+            // and if so, alert user and remove
+            // existing player (done in DataUtility class)
+            if (util.IsDupcliatePlayer(newPlayer))
             {
-                MessageBox.Show("Please Enter a valid SSN!", "Invalid Input!");
-                return;
+                MessageBox.Show("That player already exists\n" +
+                                "The existing player has been updated",
+                                "Duplicate player message");
             }
 
-            if (ssnBox.Text.Length != 9)
-            {
-                MessageBox.Show("Please Enter a valid SSN!", "Invalid Input!");
-                return;
-            }
-
-            Player newPlayer = new Player(firstNameBox.Text, lastNameBox.Text, Convert.ToInt32(ssnBox.Text));
-
-            for (int q = 0; q < util.Players.Count; ++q)
-            {
-                if (util.Players[q].Equals(newPlayer))
-                {
-                    MessageBox.Show("That employee already exists\nThe existing employee has been updated", "Duplicate employee message");
-                    util.Players.Remove(util.Players[q]);
-                }
-            }
+            // add new player to players list
             util.Players.Add(newPlayer);
+            // save players list
             util.SavePlayers();
-            //SavePlayers(players);
 
             //Confirm that the data was saved, and close the window
-            MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
+            MessageBox.Show("The player has been saved, thank you!",
+                "Save Confirmation");
+
+            // clear text boxes
             firstNameBox.Clear();
             lastNameBox.Clear();
             ssnBox.Clear();
 
         }
-
-        //List<Player> RefreshPlayerList()
-        //{
-        //    // This method gets all of the saved players or creates a file to store them if it does not exist
-        //    FileStream infile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-        //    List<Player> players = new List<Player>();
-        //    BinaryFormatter bformatter = new BinaryFormatter();
-        //    while (infile.Position < infile.Length)
-        //    {
-        //        Player newPlayer = (Player)bformatter.Deserialize(infile);
-        //        players.Add(newPlayer);
-        //    }
-
-        //    infile.Close();
-
-        //    return players;
-        //}
-
-        //void SavePlayers(List<Player> players)
-        //{
-
-        //    FileStream outfile = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-
-        //    // The file is deleted with this next statement
-        //    outfile.SetLength(0);
-
-        //    BinaryFormatter bformatter = new BinaryFormatter();
-
-        //    // The updated list of employees is written to the file
-        //    foreach (Player x in players)
-        //    {
-        //        bformatter.Serialize(outfile, x);
-        //    }
-
-        //    outfile.Close();
-        //}
 
         //Allows user to specify file path
         void SpawnFileDialog()
@@ -132,36 +92,38 @@ namespace PokerTournament
             ActiveForm.Close();
         }
 
-
+        // search button searches players by ssn
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            // verify paths set
             VerifyPathSet();
+            // update player list
             util.RefreshPlayerList();
 
-            //List<Player> searchPlayers = util.RefreshPlayerList();
+            // convert and assign search input to variable
+            int ssn = Convert.ToInt32(ssnSearchForTextBox.Text);
+            // find players that match this ssn (returns -1 if not found)
+            int i = util.SearchPlayersBySSN(ssn);
 
-            bool found = false;
-
-            for (int i = 0; i < util.Players.Count; i++)
-            {
-                if (Convert.ToInt32(ssnSearchForTextBox.Text) == util.Players[i].ssn)
-                {
-                    selectPlayer.Text = util.Players[i].FirstName + " " + util.Players[i].LastName;
-                    currentPlayer = util.Players[i];
-                    playerPos = i;
-                    found = true;
-                    totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
-                }
-            }
-
-            if (found == false)
+            // if not found, then alert user
+            if (i == -1)
             {
                 MessageBox.Show("No players with the SSN exist", "Player not found");
             }
+            // otherwise, update form information
+            else
+            {
+                selectPlayer.Text = util.Players[i].FirstName + " " + util.Players[i].LastName;
+                currentPlayer = util.Players[i];
+                playerPos = i;
+                totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
+            }
 
+            // clear search text box
             ssnSearchForTextBox.Clear();
         }
 
+        // update button updates winnings for player found in search
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             // alerts user if no player is selected
@@ -171,51 +133,60 @@ namespace PokerTournament
                 return;
             }
 
+            // verify save path is set
             VerifyPathSet();
-            util.RefreshPlayerList();
-            // The update button uses the selected player index set with the search button to update winnings for a player
-            //List<Player> updatePlayers = util.RefreshPlayerList();
 
+            // assign selected week to variable
             int currentWeek = Convert.ToInt16(weekBox.Text) - 1;
 
+            // update winning amount for selected week
             currentPlayer.Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
             util.Players[playerPos].Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
-
+            // update location for selected week
             currentPlayer.Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
             util.Players[playerPos].Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
-
+            // update display of total winnings
             totalWinnings.Text = util.Players[playerPos].Winnings.CalculateTotalWinnings().ToString();
 
-            util.Players = util.Players;
+            // save players list to file
             util.SavePlayers();
 
-            //SavePlayers(updatePlayers);
         }
         
+        // retrieve button displays all players, sorted by either winnings or ssn
         private void btnRetrieve_Click(object sender, EventArgs e)
         {
+            // verify path set
+            VerifyPathSet();
+            // refresh player list
+            util.RefreshPlayerList();
+            // clear list box of previous results
             displayResultsListBox.Items.Clear();
 
-            VerifyPathSet();
-            util.RefreshPlayerList();
-
-            //List<Player> displayPlayers = util.RefreshPlayerList();
-
+            // sorting logic
             if (sortByWinningsRadioButton.Checked)
             {
+                // sorts players by winnings
                 util.Players.Sort(delegate (Player x, Player y)
                 {
                     return y.Winnings.CalculateTotalWinnings().CompareTo(x.Winnings.CalculateTotalWinnings());
                 });
             }
+            // sorts players by ssn (default)
             else
             {
                 util.Players.Sort();
             }
 
+            // displays players in list box
             displayResultsListBox.Items.AddRange(util.Players.ToArray());
         }
 
+        // build failed without this method - I think listener can be removed
+        private void currentPathBox_Click(Object sender, EventArgs e)
+        {
+            
+        }
 
         //Allow user to select new default save/load location and display path
         private void filePathItem_Click(object sender, EventArgs e)
