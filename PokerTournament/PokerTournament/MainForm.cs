@@ -66,10 +66,17 @@ namespace PokerTournament
             MessageBox.Show("The player has been saved, thank you!",
                 "Save Confirmation");
 
+            //move to winnings tab on save
+            TabPage t = tabControl1.TabPages[1];
+            tabControl1.SelectedTab = t; //go to tab
+
             // clear text boxes
             firstNameBox.Clear();
             lastNameBox.Clear();
             ssnBox.Clear();
+
+
+
 
         }
         
