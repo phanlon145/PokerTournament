@@ -161,6 +161,13 @@ namespace PokerTournament
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // alerts user if no player is selected
+            if (currentPlayer == null)
+            {
+                MessageBox.Show("Please search for a player before updating", "No Player Selected");
+                return;
+            }
+
             //check to see if file path specified, if not, prompt user
             if (path == null)
             {
@@ -224,13 +231,17 @@ namespace PokerTournament
 
         private void weekBox_TextChanged(object sender, EventArgs e)
         {
-            // todo: throws null reference exception when no player is selected - surround with if/else
-            winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
-            stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
-            casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
+            // checks to make sure currentPlayer is not
+            // null before attempting to update player
+            if (currentPlayer != null)
+            {
+                winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
+                stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
+                casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name; 
+            }
         }
 
-
+        // exits application
         private void closeMenuItem_Click(object sender, EventArgs e)
         {
             //Exit application
