@@ -77,6 +77,8 @@ namespace PokerTournament
 
             //Confirm that the data was saved, and close the window
             MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
+            TabPage t = tabControl1.TabPages[1];
+            tabControl1.SelectedTab = t; //go to tab
             firstNameBox.Clear();
             lastNameBox.Clear();
             ssnBox.Clear();
@@ -187,8 +189,9 @@ namespace PokerTournament
             {
                 MessageBox.Show("Please specify player file location", "Select File");
                 SpawnFileDialog();
+                
             }
-
+            
             // The update button uses the selected player index set with the search button to update winnings for a player
             List<Player> updatePlayers = new List<Player>();
 
@@ -253,6 +256,11 @@ namespace PokerTournament
             winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
             stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
             casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
+        }
+
+        private void currentPathBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
