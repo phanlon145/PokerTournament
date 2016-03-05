@@ -97,26 +97,33 @@ namespace PokerTournament
             util.RefreshPlayerList();
 
             // convert and assign search input to variable
-            int ssn = Convert.ToInt32(ssnSearchForTextBox.Text);
-            // find players that match this ssn (returns -1 if not found)
-            int i = util.SearchPlayersBySSN(ssn);
+            int ssn;
+            if (Int32.TryParse(ssnSearchForTextBox.Text, out ssn))
+                {
+                // find players that match this ssn (returns -1 if not found)
+                int i = util.SearchPlayersBySSN(ssn);
 
-            // if not found, then alert user
-            if (i == -1)
-            {
-                MessageBox.Show("No players with the SSN exist", "Player not found");
+                // if not found, then alert user
+                if (i == -1)
+                {
+                    MessageBox.Show("No players with the SSN exist", "Player not found");
+                }
+                // otherwise, update form information
+                else
+                {
+                    selectPlayer.Text = util.Players[i].FirstName + " " + util.Players[i].LastName;
+                    currentPlayer = util.Players[i];
+                    playerPos = i;
+                    totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString("C");
+                }
+
+                // clear search text box
+                ssnSearchForTextBox.Clear();
             }
-            // otherwise, update form information
             else
             {
-                selectPlayer.Text = util.Players[i].FirstName + " " + util.Players[i].LastName;
-                currentPlayer = util.Players[i];
-                playerPos = i;
-                totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString();
+                MessageBox.Show("Enter a valid SSN before searching", "SSN not valid Error");
             }
-
-            // clear search text box
-            ssnSearchForTextBox.Clear();
         }
 
         // update button updates winnings for player found in search
