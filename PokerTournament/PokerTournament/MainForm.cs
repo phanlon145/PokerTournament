@@ -26,16 +26,16 @@ namespace PokerTournament
             currentPathBox.Text = "Current File Path: " + util.Path;
         }
 
-         //----------------------------//
+        //----------------------------//
         //// New Player Tab Methods ////
-       //----------------------------//
+        //----------------------------//
 
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
             // validate ssn input and assign converted int to variable
             int ssn;
-            if(!int.TryParse(ssnBox.Text, out ssn) || ssnBox.Text.Length != 9)
+            if (!int.TryParse(ssnBox.Text, out ssn) || ssnBox.Text.Length != 9)
             {
                 // alert user if invalid entry by length or unable to parse
                 MessageBox.Show("Please Enter a valid SSN!", "Invalid Input!");
@@ -77,16 +77,16 @@ namespace PokerTournament
             ssnBox.Clear();
 
         }
-        
+
         //cancel button closes form
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
             ActiveForm.Close();
         }
 
-         //--------------------------//
+        //--------------------------//
         //// Winnings Tab Methods ////
-       //--------------------------//
+        //--------------------------//
 
         // search button searches players by ssn
         private void btnSearch_Click(object sender, EventArgs e)
@@ -133,20 +133,33 @@ namespace PokerTournament
             VerifyPathSet();
 
             // assign selected week to variable
-            int currentWeek = Convert.ToInt16(weekBox.Text) - 1;
+            int currentWeek;
+            // The value entered for the current week is tested before any other actions are executed by the update button
+            if (Int32.TryParse(weekBox.Text, out currentWeek) && currentWeek <= currentPlayer.Winnings.Weeks.Length && currentWeek > 0)
+            {
+                try
+                {
+                    // update winning amount for selected week
+                    currentPlayer.Winnings.Weeks[currentWeek - 1].Winning = Convert.ToInt32(winningsBox.Text);
+                    util.Players[playerPos].Winnings.Weeks[currentWeek - 1].Winning = Convert.ToInt32(winningsBox.Text);
+                    // update location for selected week
+                    currentPlayer.Winnings.Weeks[currentWeek - 1].Location = new Location(casinoBox.Text, stateBox.Text);
+                    util.Players[playerPos].Winnings.Weeks[currentWeek - 1].Location = new Location(casinoBox.Text, stateBox.Text);
+                    // update display of total winnings
+                    totalWinnings.Text = util.Players[playerPos].Winnings.CalculateTotalWinnings().ToString("C");
 
-            // update winning amount for selected week
-            currentPlayer.Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
-            util.Players[playerPos].Winnings.Weeks[currentWeek].Winning = Convert.ToInt32(winningsBox.Text);
-            // update location for selected week
-            currentPlayer.Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
-            util.Players[playerPos].Winnings.Weeks[currentWeek].Location = new Location(casinoBox.Text, stateBox.Text);
-            // update display of total winnings
-            totalWinnings.Text = util.Players[playerPos].Winnings.CalculateTotalWinnings().ToString();
-
-            // save players list to file
-            util.SavePlayers();
-
+                    // save players list to file
+                    util.SavePlayers();
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Enter a number for the Player Winnings,\nThe number must not include special characters");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Enter a valid week", "Week Error");
+            }
         }
 
         private void weekBox_TextChanged(object sender, EventArgs e)
@@ -155,15 +168,20 @@ namespace PokerTournament
             // null before attempting to update player
             if (currentPlayer != null)
             {
-                winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
-                stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
-                casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
+                int week;
+                // The value entered into the weekBox is tested to ensure it is valid before it is used
+                if (Int32.TryParse(weekBox.Text, out week) && week <= currentPlayer.Winnings.Weeks.Length && week > 0)
+                {
+                    winningsBox.Text = currentPlayer.Winnings.Weeks[week - 1].Winning.ToString();
+                    stateBox.Text = currentPlayer.Winnings.Weeks[week - 1].Location.State;
+                    casinoBox.Text = currentPlayer.Winnings.Weeks[week - 1].Location.Name;
+                }
             }
         }
 
-         //-------------------------//
+        //-------------------------//
         //// Results Tab Methods ////
-       //-------------------------//
+        //-------------------------//
 
         // retrieve button displays all players, sorted by either winnings or ssn
         private void btnRetrieve_Click(object sender, EventArgs e)
@@ -200,9 +218,9 @@ namespace PokerTournament
             SpawnFileDialog();
         }
 
-         //-------------------//
+        //-------------------//
         //// Other Methods ////
-       //-------------------//
+        //-------------------//
 
         // checks save path is not null
         private void VerifyPathSet()
