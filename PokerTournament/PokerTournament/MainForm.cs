@@ -23,6 +23,7 @@ namespace PokerTournament
         {
             InitializeComponent();
             util = new DataUtility();
+            currentPathBox.Text = "Current File Path: " + util.Path;
         }
 
          //----------------------------//
@@ -74,9 +75,6 @@ namespace PokerTournament
             firstNameBox.Clear();
             lastNameBox.Clear();
             ssnBox.Clear();
-
-
-
 
         }
         
@@ -194,12 +192,6 @@ namespace PokerTournament
 
             // displays players in list box
             displayResultsListBox.Items.AddRange(util.Players.ToArray());
-        }
-
-        // build failed without this method - I think listener can be removed
-        private void currentPathBox_Click(Object sender, EventArgs e)
-        {
-            
         }
 
         //Allow user to select new default save/load location and display path
