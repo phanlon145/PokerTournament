@@ -23,16 +23,6 @@ namespace PokerTournament
         }
 
         string path = null;     
-
-        private void newPlayerForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
@@ -81,7 +71,7 @@ namespace PokerTournament
             lastNameBox.Clear();
             ssnBox.Clear();
 
-            }
+        }
 
         List<Player> GetPlayers()
         {
@@ -127,23 +117,12 @@ namespace PokerTournament
             currentPathBox.Text = "Current File Path: " + path;
         }
         
-        
-        
-        
         //cancel button closes form
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
             Form.ActiveForm.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -236,11 +215,6 @@ namespace PokerTournament
             displayResultsListBox.Items.AddRange(displayPlayers.ToArray());
         }
 
-        private void closeMenuItem_Click(object sender, EventArgs e)
-        {
-            //Exit application
-            Application.Exit();
-        }
 
         //Allow user to select new default save/load location and display path
         private void filePathItem_Click(object sender, EventArgs e)
@@ -250,9 +224,19 @@ namespace PokerTournament
 
         private void weekBox_TextChanged(object sender, EventArgs e)
         {
+            // todo: throws null reference exception when no player is selected - surround with if/else
             winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
             stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
             casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
         }
+
+
+        private void closeMenuItem_Click(object sender, EventArgs e)
+        {
+            //Exit application
+            Application.Exit();
+        }
+
+
     }
 }

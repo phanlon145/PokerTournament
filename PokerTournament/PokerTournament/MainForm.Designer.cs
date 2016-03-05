@@ -257,7 +257,6 @@
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Search for Player";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ssnSearchForTextBox
             // 
@@ -287,7 +286,6 @@
             this.tabPage1.Size = new System.Drawing.Size(520, 322);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "New Player Entry";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // ssnBox
             // 
@@ -500,7 +498,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Poker Tournament Winnings Tracker";
-            this.Load += new System.EventHandler(this.newPlayerForm_Load);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
