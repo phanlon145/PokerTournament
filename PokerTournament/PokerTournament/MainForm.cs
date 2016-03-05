@@ -237,6 +237,31 @@ namespace PokerTournament
             Application.Exit();
         }
 
+        // method allows user to double-click user in list box to load details in winnings tab
+        private void displayResultsListBox_DoubleClick(object sender, EventArgs e)
+        {
+            // split selected list box item at space delimeter
+            string[] fields = displayResultsListBox.SelectedItem.ToString().Split(' ');
 
+            // find players that match this ssn (returns -1 if not found)
+            int i = util.SearchPlayersBySSN(Convert.ToInt32(fields[2]));
+
+            // if not found, then alert user
+            if (i == -1)
+            {
+                MessageBox.Show("No players with the SSN exist", "Player not found");
+            }
+            // otherwise, update form information
+            else
+            {
+                selectPlayer.Text = util.Players[i].FirstName + " " + util.Players[i].LastName;
+                currentPlayer = util.Players[i];
+                playerPos = i;
+                totalWinnings.Text = currentPlayer.Winnings.CalculateTotalWinnings().ToString("C");
+            }
+
+            // change selected tab
+            tabControl1.SelectedIndex = 1;
+        }
     }
 }

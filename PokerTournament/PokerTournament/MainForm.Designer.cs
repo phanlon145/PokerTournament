@@ -438,6 +438,7 @@
             this.displayResultsListBox.Name = "displayResultsListBox";
             this.displayResultsListBox.Size = new System.Drawing.Size(459, 160);
             this.displayResultsListBox.TabIndex = 0;
+            this.displayResultsListBox.DoubleClick += new System.EventHandler(this.displayResultsListBox_DoubleClick);
             // 
             // menuStrip1
             // 
