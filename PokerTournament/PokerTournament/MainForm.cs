@@ -23,16 +23,6 @@ namespace PokerTournament
         }
 
         string path = null;     
-
-        private void newPlayerForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
         {
@@ -77,13 +67,11 @@ namespace PokerTournament
 
             //Confirm that the data was saved, and close the window
             MessageBox.Show("The player has been saved, thank you!", "Save Confirmation");
-            TabPage t = tabControl1.TabPages[1];
-            tabControl1.SelectedTab = t; //go to tab
             firstNameBox.Clear();
             lastNameBox.Clear();
             ssnBox.Clear();
 
-            }
+        }
 
         List<Player> GetPlayers()
         {
@@ -129,23 +117,12 @@ namespace PokerTournament
             currentPathBox.Text = "Current File Path: " + path;
         }
         
-        
-        
-        
         //cancel button closes form
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
             Form.ActiveForm.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -184,14 +161,20 @@ namespace PokerTournament
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // alerts user if no player is selected
+            if (currentPlayer == null)
+            {
+                MessageBox.Show("Please search for a player before updating", "No Player Selected");
+                return;
+            }
+
             //check to see if file path specified, if not, prompt user
             if (path == null)
             {
                 MessageBox.Show("Please specify player file location", "Select File");
                 SpawnFileDialog();
-                
             }
-            
+
             // The update button uses the selected player index set with the search button to update winnings for a player
             List<Player> updatePlayers = new List<Player>();
 
@@ -239,11 +222,6 @@ namespace PokerTournament
             displayResultsListBox.Items.AddRange(displayPlayers.ToArray());
         }
 
-        private void closeMenuItem_Click(object sender, EventArgs e)
-        {
-            //Exit application
-            Application.Exit();
-        }
 
         //Allow user to select new default save/load location and display path
         private void filePathItem_Click(object sender, EventArgs e)
@@ -253,14 +231,23 @@ namespace PokerTournament
 
         private void weekBox_TextChanged(object sender, EventArgs e)
         {
-            winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
-            stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
-            casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
+            // checks to make sure currentPlayer is not
+            // null before attempting to update player
+            if (currentPlayer != null)
+            {
+                winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
+                stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
+                casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name; 
+            }
         }
 
-        private void currentPathBox_Click(object sender, EventArgs e)
+        // exits application
+        private void closeMenuItem_Click(object sender, EventArgs e)
         {
-
+            //Exit application
+            Application.Exit();
         }
+
+
     }
 }
