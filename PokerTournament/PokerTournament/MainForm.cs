@@ -18,21 +18,16 @@ namespace PokerTournament
         static int playerPos;
         private DataUtility util;
 
+        // constructor instantiates new DataUtility 
         public MainForm()
         {
             InitializeComponent();
             util = new DataUtility();
         }
 
-        // checks save path is not null
-        private void VerifyPathSet()
-        {
-            if (util.Path == null)
-            {
-                MessageBox.Show("Please specify player file location", "Select File");
-                SpawnFileDialog();
-            }
-        }
+
+        //// New Player Tab Methods ////
+
 
         //Save+close button
         private void saveBtn_Click_1(object sender, EventArgs e)
@@ -77,20 +72,16 @@ namespace PokerTournament
             ssnBox.Clear();
 
         }
-
-        //Allows user to specify file path
-        void SpawnFileDialog()
-        {
-            folderBrowserDialog.ShowDialog();
-            util.Path = folderBrowserDialog.SelectedPath + "\\Players.txt";
-            currentPathBox.Text = "Current File Path: " + util.Path;
-        }
         
         //cancel button closes form
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
             ActiveForm.Close();
         }
+
+
+        //// Winnings Tab Methods ////
+
 
         // search button searches players by ssn
         private void btnSearch_Click(object sender, EventArgs e)
@@ -152,7 +143,23 @@ namespace PokerTournament
             util.SavePlayers();
 
         }
-        
+
+        private void weekBox_TextChanged(object sender, EventArgs e)
+        {
+            // checks to make sure currentPlayer is not
+            // null before attempting to update player
+            if (currentPlayer != null)
+            {
+                winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
+                stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
+                casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name;
+            }
+        }
+
+
+        //// Results Tab Methods ////
+
+
         // retrieve button displays all players, sorted by either winnings or ssn
         private void btnRetrieve_Click(object sender, EventArgs e)
         {
@@ -194,16 +201,26 @@ namespace PokerTournament
             SpawnFileDialog();
         }
 
-        private void weekBox_TextChanged(object sender, EventArgs e)
+
+        //// Other Methods ////
+
+
+        // checks save path is not null
+        private void VerifyPathSet()
         {
-            // checks to make sure currentPlayer is not
-            // null before attempting to update player
-            if (currentPlayer != null)
+            if (util.Path == null)
             {
-                winningsBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Winning.ToString();
-                stateBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.State;
-                casinoBox.Text = currentPlayer.Winnings.Weeks[Convert.ToInt16(weekBox.Text) - 1].Location.Name; 
+                MessageBox.Show("Please specify player file location", "Select File");
+                SpawnFileDialog();
             }
+        }
+
+        //Allows user to specify file path
+        void SpawnFileDialog()
+        {
+            folderBrowserDialog.ShowDialog();
+            util.Path = folderBrowserDialog.SelectedPath + "\\Players.txt";
+            currentPathBox.Text = "Current File Path: " + util.Path;
         }
 
         // exits application
